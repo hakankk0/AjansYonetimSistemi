@@ -1,0 +1,71 @@
+<UserControl x:Class="AjansYonetim.Pencereler.KullaniciKontrolleri.HareketlerKontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Başlık -->
+        <Border Grid.Row="0" Background="{StaticResource KartFirca}" CornerRadius="14" Padding="20,16" Margin="0,0,0,16">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Border Width="34" Height="34" CornerRadius="10" Margin="0,0,12,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#F59E0B" Offset="0"/>
+                                <GradientStop Color="#FBBF24" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <TextBlock Text="&#xE895;" FontFamily="Segoe MDL2 Assets" FontSize="16"
+                                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Aktivite Geçmişi" FontSize="18" FontWeight="SemiBold" Foreground="{StaticResource MetinFirca}"/>
+                        <TextBlock Text="Sistemdeki tüm kayıtlı aktiviteler" FontSize="11" Foreground="{StaticResource MetinSonikFirca}" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <Button Style="{StaticResource IkincilButonStil}"
+                        HorizontalAlignment="Right" Click="HareketleriYenileTiklandi">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE895;" FontFamily="Segoe MDL2 Assets" FontSize="14" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="Yenile" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Tablo -->
+        <Border Grid.Row="1" Background="{StaticResource KartFirca}" CornerRadius="14" Padding="8">
+             <DataGrid x:Name="dgHareketler"
+                       AutoGenerateColumns="False" IsReadOnly="True"
+                       SelectionMode="Single" SelectionUnit="FullRow"
+                       HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                       CanUserAddRows="False" CanUserDeleteRows="False"
+                       Background="Transparent" Foreground="{StaticResource MetinFirca}"
+                       BorderThickness="0" RowHeaderWidth="0" FontSize="13"
+                       RowStyle="{StaticResource DataGridSatirStil}"
+                       CellStyle="{StaticResource DataGridHucreStil}"
+                       ColumnHeaderStyle="{StaticResource DataGridSutunBaslikStil}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="İkon" Binding="{Binding Ikon}" Width="50">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="16"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Tarih" Binding="{Binding FormatliTarih}" Width="150" Foreground="{StaticResource MetinSonikFirca}"/>
+                    <DataGridTextColumn Header="Aksiyon (Yapılan İşlem)" Binding="{Binding AksiyonMetni}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

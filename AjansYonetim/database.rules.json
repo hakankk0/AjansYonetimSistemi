@@ -1,0 +1,49 @@
+{
+  "rules": {
+    "Agencies": {
+      // SADECE admine ROOT okuma/yazma (Silme ve Listeleme) yetkisi verildi
+      ".read": "auth != null && auth.token.email === 'hologramss12@gmail.com'",
+      ".write": "auth != null && auth.token.email === 'hologramss12@gmail.com'",
+      "$email": {
+        // Masaüstü uygulamanız kaydolurken veya giriş yaparken hedef maili sorgulayabilir ve yazabilir
+        ".read": "true",
+        ".write": "true" 
+      }
+    },
+    
+    "Lisanslar": {
+      ".read": false,
+      "$agency_id": {
+        ".read": "true",
+        ".write": "true" 
+      }
+    },
+    
+    "OTPCodes": {
+      ".read": false,
+      "$email": {
+        ".read": "true",
+        ".write": "true"
+      }
+    },
+
+    "UretilenLisansKodlari": {
+      // Ana listeyi kimse çekemez (Çalınamaz)
+      ".read": false,
+      "$code_id": {
+        // C# kodunuz, sadece spesifik CD-Key şifresini yazıp tek o kaydı okuyabilir/silebilir
+        ".read": "true",
+        ".write": "true" 
+      }
+    },
+    
+    "Yedekler": {
+      ".read": false,
+      "$agency_id": {
+         // Uygulamanız sadece AgencyID (GUID) eşleşiyorsa yedek atabilir
+         ".read": "true",
+         ".write": "true"
+      }
+    }
+  }
+}

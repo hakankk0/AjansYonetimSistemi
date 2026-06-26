@@ -1,0 +1,194 @@
+<UserControl x:Class="AjansYonetim.Pencereler.KullaniciKontrolleri.KanbanKontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Görev Atandı -->
+        <Border Grid.Column="0" Background="{StaticResource KartFirca}" CornerRadius="14" Padding="14" Margin="0,0,6,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Height="3" CornerRadius="2" Margin="0,0,0,10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#3B82F6" Offset="0"/>
+                            <GradientStop Color="#60A5FA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock Grid.Row="1" FontSize="13" FontWeight="Bold"
+                           Foreground="{StaticResource BilgiFirca}" Margin="0,0,0,8"><Run Text="&#xE70B;" FontFamily="Segoe MDL2 Assets"/><Run Text=" Görev Atandı"/></TextBlock>
+                 <ListBox x:Name="lstKanbanGorevAtandi" Grid.Row="2" Background="Transparent" BorderThickness="0"
+                          Foreground="{StaticResource MetinFirca}" MouseDoubleClick="KanbanProjeDetay"
+                          AllowDrop="True"
+                          PreviewMouseLeftButtonDown="Kanban_PreviewMouseLeftButtonDown"
+                          PreviewMouseMove="Kanban_PreviewMouseMove"
+                          Drop="Kanban_Drop"
+                          GiveFeedback="Kanban_GiveFeedback">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#1E1E30" CornerRadius="10" Padding="12,10" Margin="0,0,0,6">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding ProjeAdi}" Foreground="#E2E8F0" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding MusteriAdSoyad}" Foreground="#94A3B8" FontSize="10" Margin="0,3,0,0"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                        <Border Background="#1A3A5C" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
+                                            <TextBlock Text="{Binding Kategori}" Foreground="{StaticResource BilgiFirca}" FontSize="9"/>
+                                        </Border>
+                                        <TextBlock Text="{Binding GecikmeEtiketi}" Foreground="#EF4444" FontSize="9" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+
+        <!-- Devam Ediyor -->
+        <Border Grid.Column="1" Background="{StaticResource KartFirca}" CornerRadius="14" Padding="14" Margin="6,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Height="3" CornerRadius="2" Margin="0,0,0,10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#7C3AED" Offset="0"/>
+                            <GradientStop Color="#A78BFA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock Grid.Row="1" FontSize="13" FontWeight="Bold"
+                           Foreground="{StaticResource VurguAcikFirca}" Margin="0,0,0,8"><Run Text="&#xE895;" FontFamily="Segoe MDL2 Assets"/><Run Text=" Devam Ediyor"/></TextBlock>
+                 <ListBox x:Name="lstKanbanDevamEdiyor" Grid.Row="2" Background="Transparent" BorderThickness="0"
+                          Foreground="{StaticResource MetinFirca}" MouseDoubleClick="KanbanProjeDetay"
+                          AllowDrop="True"
+                          PreviewMouseLeftButtonDown="Kanban_PreviewMouseLeftButtonDown"
+                          PreviewMouseMove="Kanban_PreviewMouseMove"
+                          Drop="Kanban_Drop"
+                          GiveFeedback="Kanban_GiveFeedback">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#1E1E30" CornerRadius="10" Padding="12,10" Margin="0,0,0,6">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding ProjeAdi}" Foreground="#E2E8F0" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding MusteriAdSoyad}" Foreground="#94A3B8" FontSize="10" Margin="0,3,0,0"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                        <Border Background="#2A1A4C" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
+                                            <TextBlock Text="{Binding Kategori}" Foreground="{StaticResource VurguAcikFirca}" FontSize="9"/>
+                                        </Border>
+                                        <TextBlock Text="{Binding GecikmeEtiketi}" Foreground="#EF4444" FontSize="9" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+
+        <!-- Teslim Edildi -->
+        <Border Grid.Column="2" Background="{StaticResource KartFirca}" CornerRadius="14" Padding="14" Margin="6,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Height="3" CornerRadius="2" Margin="0,0,0,10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#F59E0B" Offset="0"/>
+                            <GradientStop Color="#FBBF24" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock Grid.Row="1" FontSize="13" FontWeight="Bold"
+                           Foreground="{StaticResource UyariFirca}" Margin="0,0,0,8"><Run Text="&#xE7B8;" FontFamily="Segoe MDL2 Assets"/><Run Text=" Teslim Edildi"/></TextBlock>
+                 <ListBox x:Name="lstKanbanTeslimEdildi" Grid.Row="2" Background="Transparent" BorderThickness="0"
+                          Foreground="{StaticResource MetinFirca}" MouseDoubleClick="KanbanProjeDetay"
+                          AllowDrop="True"
+                          PreviewMouseLeftButtonDown="Kanban_PreviewMouseLeftButtonDown"
+                          PreviewMouseMove="Kanban_PreviewMouseMove"
+                          Drop="Kanban_Drop"
+                          GiveFeedback="Kanban_GiveFeedback">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#1E1E30" CornerRadius="10" Padding="12,10" Margin="0,0,0,6">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding ProjeAdi}" Foreground="#E2E8F0" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding MusteriAdSoyad}" Foreground="#94A3B8" FontSize="10" Margin="0,3,0,0"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                        <Border Background="#3A2A0C" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
+                                            <TextBlock Text="{Binding Kategori}" Foreground="{StaticResource UyariFirca}" FontSize="9"/>
+                                        </Border>
+                                        <TextBlock Text="{Binding GecikmeEtiketi}" Foreground="#EF4444" FontSize="9" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+
+        <!-- Tamamlandı -->
+        <Border Grid.Column="3" Background="{StaticResource KartFirca}" CornerRadius="14" Padding="14" Margin="6,0,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Height="3" CornerRadius="2" Margin="0,0,0,10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#22C55E" Offset="0"/>
+                            <GradientStop Color="#4ADE80" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock Grid.Row="1" FontSize="13" FontWeight="Bold"
+                           Foreground="{StaticResource BasariFirca}" Margin="0,0,0,8"><Run Text="&#xE73E;" FontFamily="Segoe MDL2 Assets"/><Run Text=" Tamamlandı"/></TextBlock>
+                 <ListBox x:Name="lstKanbanTamamlandi" Grid.Row="2" Background="Transparent" BorderThickness="0"
+                          Foreground="{StaticResource MetinFirca}" MouseDoubleClick="KanbanProjeDetay"
+                          AllowDrop="True"
+                          PreviewMouseLeftButtonDown="Kanban_PreviewMouseLeftButtonDown"
+                          PreviewMouseMove="Kanban_PreviewMouseMove"
+                          Drop="Kanban_Drop"
+                          GiveFeedback="Kanban_GiveFeedback">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#1E1E30" CornerRadius="10" Padding="12,10" Margin="0,0,0,6">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding ProjeAdi}" Foreground="#E2E8F0" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding MusteriAdSoyad}" Foreground="#94A3B8" FontSize="10" Margin="0,3,0,0"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                        <Border Background="#0A2A1A" CornerRadius="4" Padding="6,2">
+                                            <TextBlock Text="{Binding Kategori}" Foreground="{StaticResource BasariFirca}" FontSize="9"/>
+                                        </Border>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>

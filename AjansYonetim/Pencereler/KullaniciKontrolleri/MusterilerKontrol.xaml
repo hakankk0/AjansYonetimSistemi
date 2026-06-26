@@ -1,0 +1,85 @@
+<UserControl x:Class="AjansYonetim.Pencereler.KullaniciKontrolleri.MusterilerKontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+    
+    <Border Background="{StaticResource KartFirca}" CornerRadius="14" Padding="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="18,14,18,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="30" Height="30" CornerRadius="8" Margin="0,0,10,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3B82F6" Offset="0"/>
+                                <GradientStop Color="#60A5FA" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Müşteri Listesi" FontSize="16" FontWeight="SemiBold"
+                               Foreground="{StaticResource MetinFirca}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBox x:Name="txtMusteriArama" Grid.Column="1" Style="{StaticResource ModernTextBoxStil}"
+                         Width="220" Height="40" Margin="16,0,0,0" HorizontalAlignment="Left"
+                         TextChanged="MusteriAramaDegisti"/>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="＋ Yeni Müşteri" Style="{StaticResource VurguButonStil}"
+                            Click="YeniMusteriTiklandi" Margin="0,0,8,0"/>
+                    <Button Style="{StaticResource IkincilButonStil}"
+                            Click="MusteriDuzenleTiklandi" Margin="0,0,8,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <TextBlock Text="Düzenle" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource TehlikeButonStil}"
+                            Click="MusteriSilTiklandi">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <TextBlock Text="Sil" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <DataGrid x:Name="dgMusteriler" Grid.Row="1"
+                      AutoGenerateColumns="False" IsReadOnly="True"
+                      SelectionMode="Single" SelectionUnit="FullRow"
+                      HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                      CanUserAddRows="False" CanUserDeleteRows="False"
+                      Background="Transparent" Foreground="{StaticResource MetinFirca}"
+                      BorderThickness="0" RowHeaderWidth="0" Margin="8,0,8,8" FontSize="13"
+                      RowStyle="{StaticResource DataGridSatirStil}"
+                      CellStyle="{StaticResource DataGridHucreStil}"
+                      ColumnHeaderStyle="{StaticResource DataGridSutunBaslikStil}"
+                      MouseDoubleClick="MusteriDetayCiftTiklama">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding MusteriID}" Width="60"/>
+                    <DataGridTextColumn Header="Ad Soyad" Binding="{Binding AdSoyad}" Width="*"/>
+                    <DataGridTextColumn Header="Şirket" Binding="{Binding SirketAdi}" Width="130"/>
+                    <DataGridTextColumn Header="Tür" Binding="{Binding MusteriTuru}" Width="80"/>
+                    <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="120"/>
+                    <DataGridTextColumn Header="E-posta" Binding="{Binding Eposta}" Width="180"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel x:Name="pnlMusteriBos" Grid.Row="1" VerticalAlignment="Center"
+                        HorizontalAlignment="Center" Visibility="Collapsed">
+                <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="48" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                <TextBlock Text="Henüz müşteri kaydı bulunmuyor" FontSize="16" FontWeight="SemiBold"
+                           Foreground="{StaticResource MetinSonikFirca}" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

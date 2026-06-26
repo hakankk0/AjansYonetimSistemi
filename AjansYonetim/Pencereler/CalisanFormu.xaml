@@ -1,0 +1,118 @@
+<Window x:Class="AjansYonetim.Pencereler.CalisanFormu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Çalışan Formu"
+        Width="520" Height="680"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True"
+        Background="Transparent">
+
+    <Border CornerRadius="16" ClipToBounds="True" BorderBrush="#3F3F5F" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="24" ShadowDepth="4" Opacity="0.45" Color="#000000"/>
+        </Border.Effect>
+        <Grid Background="{StaticResource ArkaPlanFirca}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Başlık Çubuğu -->
+            <Border Grid.Row="0" Padding="24,16" MouseLeftButtonDown="Pencere_Surukle">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#14142A" Offset="0"/>
+                        <GradientStop Color="#1A1A32" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Width="34" Height="34" CornerRadius="10" Margin="0,0,12,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#22C55E" Offset="0"/>
+                                    <GradientStop Color="#4ADE80" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="16"
+                                       Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock x:Name="txtFormBaslik" Text="Yeni Çalışan Ekle" FontSize="17" FontWeight="Bold"
+                                   Foreground="{StaticResource MetinFirca}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand" Click="IptalTiklandi">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="bd" Width="32" Height="32" CornerRadius="8" Background="Transparent">
+                                    <TextBlock Text="✕" FontSize="13" Foreground="#64748B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="bd" Property="Background" Value="#2A2A42"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!-- Form İçeriği -->
+            <Border Grid.Row="1" Margin="16,10,16,16" Background="{StaticResource KartFirca}" CornerRadius="12" Padding="24,20">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <StackPanel>
+                        <TextBlock Text="Ad Soyad *" Style="{StaticResource FormEtiketStil}"/>
+                        <TextBox x:Name="txtAdSoyad" Style="{StaticResource ModernTextBoxStil}" Margin="0,0,0,14"
+                                 MaxLength="100" PreviewTextInput="SadeceHarf"/>
+
+                        <TextBlock Text="Telefon" Style="{StaticResource FormEtiketStil}"/>
+                        <TextBox x:Name="txtTelefon" Style="{StaticResource ModernTextBoxStil}" Margin="0,0,0,14"
+                                 MaxLength="15" PreviewTextInput="SadeceRakam"/>
+
+                        <TextBlock Text="E-posta" Style="{StaticResource FormEtiketStil}"/>
+                        <TextBox x:Name="txtEposta" Style="{StaticResource ModernTextBoxStil}" Margin="0,0,0,14"/>
+
+                        <TextBlock Text="Departman *" Style="{StaticResource FormEtiketStil}"/>
+                        <ComboBox x:Name="cmbDepartman" Style="{StaticResource ModernComboBoxStil}"
+                                  Height="36" Margin="0,0,0,14"/>
+
+                        <TextBlock Text="Pozisyon / Ünvan" Style="{StaticResource FormEtiketStil}"/>
+                        <TextBox x:Name="txtPozisyon" Style="{StaticResource ModernTextBoxStil}" Margin="0,0,0,14"
+                                 MaxLength="200"/>
+
+                        <TextBlock Text="Çalışan Türü *" Style="{StaticResource FormEtiketStil}"/>
+                        <ComboBox x:Name="cmbCalisanTuru" Style="{StaticResource ModernComboBoxStil}"
+                                  Height="36" Margin="0,0,0,14"/>
+
+                        <TextBlock Text="İşe Başlama Tarihi" Style="{StaticResource FormEtiketStil}"/>
+                        <DatePicker x:Name="dpIseBaslama" Margin="0,0,0,14" Height="36"/>
+
+                        <TextBlock Text="Durum" Style="{StaticResource FormEtiketStil}"/>
+                        <ComboBox x:Name="cmbDurum" Style="{StaticResource ModernComboBoxStil}"
+                                  Height="36" Margin="0,0,0,14"/>
+
+                        <TextBlock Text="Notlar" Style="{StaticResource FormEtiketStil}"/>
+                        <TextBox x:Name="txtNotlar" Style="{StaticResource ModernTextBoxStil}"
+                                 TextWrapping="Wrap" AcceptsReturn="True" Height="80"
+                                 VerticalContentAlignment="Top" Margin="0,0,0,20"
+                                 MaxLength="500"/>
+
+                        <!-- Butonlar -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="İptal" Style="{StaticResource IkincilButonStil}"
+                                    Click="IptalTiklandi" Margin="0,0,10,0" Padding="20,10"/>
+                            <Button Style="{StaticResource VurguButonStil}"
+                                    Click="KaydetTiklandi">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                    <TextBlock Text="Kaydet" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

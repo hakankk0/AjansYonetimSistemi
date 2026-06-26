@@ -1,0 +1,467 @@
+<Window x:Class="AjansYonetim.Pencereler.ProjeDetayPenceresi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:donusturuculer="clr-namespace:AjansYonetim.Donusturuculer"
+        Title="Proje Detayı"
+        Width="780" Height="720"
+        MinWidth="600" MinHeight="500"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource ArkaPlanFirca}">
+
+    <Window.Resources>
+        <donusturuculer:MetinGorunurlukDonusturucu x:Key="MetinGorunurlukDonusturucu"/>
+    </Window.Resources>
+
+    <Grid Margin="22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Proje Başlık Kartı -->
+        <Border Grid.Row="0" CornerRadius="14" Padding="24,18" Margin="0,0,0,16">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#2A2A42" Offset="0"/>
+                    <GradientStop Color="#2A2A3E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock x:Name="txtProjeAdi" Text="Proje Adı" FontSize="22" FontWeight="Bold"
+                                   Foreground="{StaticResource MetinFirca}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource MetinSonikFirca}" FontSize="13" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <TextBlock x:Name="txtMusteriAdi" Text="Müşteri" Foreground="{StaticResource VurguAcikFirca}"
+                                       FontSize="13" FontWeight="SemiBold" Margin="0,0,20,0"/>
+                            <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource MetinSonikFirca}" FontSize="13" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <TextBlock x:Name="txtTarihAralik" Foreground="{StaticResource MetinSonikFirca}" FontSize="13"
+                                       Margin="0,0,20,0"/>
+                            <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource MetinSonikFirca}" FontSize="13" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <TextBlock x:Name="txtFiyat" Foreground="{StaticResource BasariFirca}" FontSize="13"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+                        <TextBlock x:Name="txtKurDetay" Text="" FontSize="11"
+                                   Foreground="{StaticResource VurguAcikFirca}" Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                        <Border CornerRadius="8" Padding="14,8" Margin="0,0,8,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#7C3AED" Offset="0"/>
+                                    <GradientStop Color="#6D28D9" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock x:Name="txtDurum" Text="Durum" Foreground="White" FontSize="13" FontWeight="Bold"/>
+                        </Border>
+                        <Border x:Name="brdKategori" Background="#1E3A5F" CornerRadius="8" Padding="14,8">
+                            <TextBlock x:Name="txtKategori" Text="" Foreground="{StaticResource BilgiFirca}" FontSize="12" FontWeight="SemiBold"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <!-- İlerleme Çubuğu -->
+                <Grid Margin="0,14,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ProgressBar x:Name="pbIlerleme" Grid.Column="0" Height="10" Minimum="0" Maximum="100"
+                                 Background="#1E1E30" Foreground="{StaticResource VurguFirca}"
+                                 BorderThickness="0" Margin="0,0,12,0"/>
+                    <TextBlock x:Name="txtIlerlemeYuzde" Grid.Column="1" Foreground="{StaticResource VurguAcikFirca}"
+                               FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+                </Grid>
+                <Slider x:Name="sldIlerleme" Minimum="0" Maximum="100" TickFrequency="5" IsSnapToTickEnabled="True"
+                        Margin="0,6,0,0" ValueChanged="IlerlemeDegisti"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Tab Control -->
+        <TabControl Grid.Row="1" Background="Transparent" BorderThickness="0"
+                    Foreground="{StaticResource MetinFirca}">
+
+            <!-- ═══ NOTLAR TAB ═══ -->
+            <TabItem Foreground="{StaticResource MetinFirca}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE70B;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="Notlar" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Border Background="{StaticResource KartFirca}" CornerRadius="0,14,14,14" Padding="20,16" Margin="0,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="txtYeniNot" Grid.Column="0" Style="{StaticResource ModernTextBoxStil}"
+                                     TextWrapping="Wrap" AcceptsReturn="True" Height="80"
+                                     VerticalContentAlignment="Top" Margin="0,0,12,0"/>
+                            <Button Grid.Column="1" Style="{StaticResource VurguButonStil}"
+                                    Click="NotEkleTiklandi" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xE718;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                    <TextBlock Text="Ekle" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <ListBox x:Name="lstNotlar" Grid.Row="1" Background="Transparent"
+                                 BorderThickness="0" Foreground="{StaticResource MetinFirca}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#1A1A2E" CornerRadius="10" Padding="14,10" Margin="0,0,0,6">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding NotMetni}"
+                                                       TextWrapping="Wrap" Foreground="#E2E8F0" FontSize="13"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                                       Text="{Binding OlusturmaTarihi, StringFormat=dd.MM.yyyy HH:mm}"
+                                                       Foreground="#94A3B8" FontSize="11" Margin="0,4,0,0"/>
+                                            <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+                                                    FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" FontSize="14" Background="Transparent"
+                                                    Foreground="#EF4444" BorderThickness="0" Cursor="Hand"
+                                                    VerticalAlignment="Center" Padding="8,4"
+                                                    Click="NotSilTiklandi" Tag="{Binding NotID}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <!-- ═══ YAPILACAKLAR TAB ═══ -->
+            <TabItem Foreground="{StaticResource MetinFirca}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="Yapılacaklar" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Border Background="{StaticResource KartFirca}" CornerRadius="0,14,14,14" Padding="20,16" Margin="0,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- İlerleme Özet -->
+                        <Border Grid.Row="0" Background="#1A1A2E" CornerRadius="10" Padding="16,12" Margin="0,0,0,12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock x:Name="txtGorevOzet" Text="0 / 0 görev tamamlandı"
+                                               Foreground="{StaticResource MetinSonikFirca}" FontSize="13"/>
+                                    <ProgressBar x:Name="pbGorevIlerleme" Height="8" Minimum="0" Maximum="100"
+                                                 Background="#2D2D44" Foreground="{StaticResource BasariFirca}"
+                                                 BorderThickness="0" Margin="0,6,0,0" Value="0"/>
+                                </StackPanel>
+                                <TextBlock x:Name="txtGorevYuzde" Grid.Column="1" Text="%0"
+                                           Foreground="{StaticResource BasariFirca}" FontSize="20"
+                                           FontWeight="Bold" VerticalAlignment="Center" Margin="16,0,0,0"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Görev Ekleme -->
+                        <Grid Grid.Row="1" Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="txtGorevBaslik" Grid.Row="0" Grid.Column="0"
+                                     Style="{StaticResource ModernTextBoxStil}" Tag="Görev başlığı..." MaxLength="300"/>
+                            <ComboBox x:Name="cmbGorevCalisan" Grid.Row="0" Grid.Column="2"
+                                      Style="{StaticResource ModernComboBoxStil}"
+                                      DisplayMemberPath="AdSoyad" FontSize="13" Height="40"/>
+                            <Button Grid.Row="0" Grid.Column="4" Content="➕ Ekle"
+                                    Style="{StaticResource VurguButonStil}" Click="GorevEkleTiklandi"/>
+                            <TextBox x:Name="txtGorevAciklama" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                                     Style="{StaticResource ModernTextBoxStil}" Tag="Açıklama (opsiyonel)..." MaxLength="1000" Margin="0,6,0,0"/>
+                        </Grid>
+
+                        <!-- Görev Listesi -->
+                        <ListBox x:Name="lstGorevler" Grid.Row="2" Background="Transparent"
+                                 BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#1A1A2E" CornerRadius="10" Padding="12,10" Margin="0,0,0,6">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox Grid.Column="0" IsChecked="{Binding Tamamlandi, Mode=OneWay}"
+                                                      VerticalAlignment="Center" Margin="0,0,10,0"
+                                                      Click="GorevDurumuDegisti" Tag="{Binding GorevID}"/>
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Baslik}" FontSize="13" FontWeight="SemiBold"
+                                                           Foreground="#E2E8F0" TextWrapping="Wrap">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Tamamlandi}" Value="True">
+                                                                    <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                                    <Setter Property="Foreground" Value="#64748B"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock Text="{Binding Aciklama}" FontSize="11"
+                                                           Foreground="#94A3B8" TextWrapping="Wrap" Margin="0,2,0,0"
+                                                           Visibility="{Binding Aciklama, Converter={StaticResource MetinGorunurlukDonusturucu}, FallbackValue=Collapsed}"/>
+                                            </StackPanel>
+                                            <Border Grid.Column="2" Background="#1A3A5C" CornerRadius="6"
+                                                    Padding="8,4" Margin="8,0" VerticalAlignment="Center"
+                                                    Visibility="{Binding CalisanAdSoyad, Converter={StaticResource MetinGorunurlukDonusturucu}, FallbackValue=Collapsed}">
+                                                <TextBlock Text="{Binding CalisanAdSoyad}" FontSize="11"
+                                                           Foreground="{StaticResource BilgiFirca}" FontWeight="SemiBold"/>
+                                            </Border>
+                                            <Button Grid.Column="3" FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" FontSize="14"
+                                                    Background="Transparent" Foreground="#EF4444"
+                                                    BorderThickness="0" Cursor="Hand"
+                                                    VerticalAlignment="Center" Padding="8,4"
+                                                    Click="GorevSilTiklandi" Tag="{Binding GorevID}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <!-- ═══ ÖDEMELER TAB ═══ -->
+            <TabItem Foreground="{StaticResource MetinFirca}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="Ödemeler" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Border Background="{StaticResource KartFirca}" CornerRadius="0,14,14,14" Padding="20,16" Margin="0,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Ödeme Özet -->
+                        <UniformGrid Grid.Row="0" Columns="3" Margin="0,0,0,12">
+                            <Border Background="#1A1A2E" CornerRadius="10" Padding="16,10" Margin="0,0,6,0">
+                                <StackPanel>
+                                    <TextBlock Text="Proje Fiyatı" Foreground="{StaticResource MetinSonikFirca}" FontSize="11"/>
+                                    <TextBlock x:Name="txtDetayFiyat" Foreground="{StaticResource MetinFirca}" FontSize="16" FontWeight="Bold" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#1A1A2E" CornerRadius="10" Padding="16,10" Margin="3,0">
+                                <StackPanel>
+                                    <TextBlock Text="Ödenen" Foreground="{StaticResource MetinSonikFirca}" FontSize="11"/>
+                                    <TextBlock x:Name="txtOdenen" Foreground="{StaticResource BasariFirca}" FontSize="16" FontWeight="Bold" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#1A1A2E" CornerRadius="10" Padding="16,10" Margin="6,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Kalan" Foreground="{StaticResource MetinSonikFirca}" FontSize="11"/>
+                                    <TextBlock x:Name="txtKalan" Foreground="{StaticResource UyariFirca}" FontSize="16" FontWeight="Bold" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <!-- Ödeme Ekleme -->
+                        <Grid Grid.Row="1" Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox x:Name="cmbOdemeTuru" Grid.Column="0" Style="{StaticResource ModernComboBoxStil}" FontSize="12" SelectedIndex="0">
+                                <ComboBoxItem Content="Tahsilat" Foreground="{StaticResource BasariFirca}"/>
+                                <ComboBoxItem Content="İade" Foreground="{StaticResource TehlikeFirca}"/>
+                            </ComboBox>
+                            <TextBox x:Name="txtOdemeTutar" Grid.Column="2" Style="{StaticResource ModernTextBoxStil}"
+                                     PreviewTextInput="FiyatSadeceRakam"/>
+                            <DatePicker x:Name="dpOdemeTarihi" Grid.Column="4" FontSize="12"/>
+                            <TextBox x:Name="txtOdemeAciklama" Grid.Column="6" Style="{StaticResource ModernTextBoxStil}"/>
+                            <Button x:Name="btnOdemeEkle" Grid.Column="8" Style="{StaticResource VurguButonStil}"
+                                    Click="OdemeEkleTiklandi">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                    <TextBlock Text="İşlemi Kaydet" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+
+                        <!-- Ödeme Listesi -->
+                        <DataGrid x:Name="dgOdemeler" Grid.Row="2"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  SelectionMode="Single" SelectionUnit="FullRow"
+                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                  CanUserAddRows="False" CanUserDeleteRows="False"
+                                  Background="Transparent" Foreground="{StaticResource MetinFirca}"
+                                  BorderThickness="0" RowHeaderWidth="0" FontSize="13"
+                                  RowStyle="{StaticResource DataGridSatirStil}"
+                                  CellStyle="{StaticResource DataGridHucreStil}"
+                                  ColumnHeaderStyle="{StaticResource DataGridSutunBaslikStil}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Tarih" Binding="{Binding OdemeTarihi, StringFormat=dd.MM.yyyy}" Width="120"/>
+                                <DataGridTextColumn x:Name="colOdemeTutar" Header="Tutar" Binding="{Binding TutarGosterim}" Width="120"/>
+                                <DataGridTextColumn Header="Açıklama" Binding="{Binding Aciklama}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <!-- ═══ EKİP TAB ═══ -->
+            <TabItem Foreground="{StaticResource MetinFirca}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="Ekip" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Border Background="{StaticResource KartFirca}" CornerRadius="0,14,14,14" Padding="20,16" Margin="0,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="#1A1A2E" CornerRadius="10" Padding="16,10" Margin="0,0,0,12">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" FontSize="16" VerticalAlignment="Center" Foreground="White" Margin="0,0,6,0"/>
+                                <TextBlock x:Name="txtEkipOzet" Text="0 çalışan atanmış"
+                                           Foreground="{StaticResource MetinSonikFirca}" FontSize="13" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Grid Grid.Row="1" Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox x:Name="cmbEkipCalisan" Grid.Column="0"
+                                      Style="{StaticResource ModernComboBoxStil}"
+                                      DisplayMemberPath="AdSoyad" Height="40" FontSize="13"/>
+                            <Button Grid.Column="2" Content="➕ Ekibe Ekle" Style="{StaticResource VurguButonStil}"
+                                    Click="EkibeCalisanEkleTiklandi" Padding="16,10"/>
+                        </Grid>
+
+                        <ListBox x:Name="lstEkip" Grid.Row="2" Background="Transparent"
+                                 BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#1A1A2E" CornerRadius="10" Padding="14,10" Margin="0,0,0,6">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0" CornerRadius="20" Width="36" Height="36" Margin="0,0,12,0">
+                                                <Border.Background>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                        <GradientStop Color="#7C3AED" Offset="0"/>
+                                                        <GradientStop Color="#A78BFA" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center" Foreground="White"/>
+                                            </Border>
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding AdSoyad}" FontSize="14" FontWeight="SemiBold" Foreground="#E2E8F0"/>
+                                                <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                                                    <TextBlock Text="{Binding Departman}" FontSize="11" Foreground="{StaticResource MetinSonikFirca}" Margin="0,0,12,0"/>
+                                                    <TextBlock Text="{Binding Pozisyon}" FontSize="11" Foreground="{StaticResource BilgiFirca}"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <Border Grid.Column="2" Background="#1A3A5C" CornerRadius="6" Padding="8,4" Margin="8,0" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding CalisanTuru}" FontSize="11" Foreground="{StaticResource BilgiFirca}" FontWeight="SemiBold"/>
+                                            </Border>
+                                            <Button Grid.Column="3" Content="✕" FontSize="14"
+                                                    Style="{StaticResource TehlikeButonStil}"
+                                                    Width="30" Height="30" Padding="0" VerticalAlignment="Center"
+                                                    Click="EkiptenCalisanCikarTiklandi" Tag="{Binding CalisanID}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <!-- ═══ DURUM GEÇMİŞİ TAB ═══ -->
+            <TabItem Foreground="{StaticResource MetinFirca}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE762;" FontFamily="Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="Durum Geçmişi" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Border Background="{StaticResource KartFirca}" CornerRadius="0,14,14,14" Padding="20,16" Margin="0,0,0,0">
+                    <ListBox x:Name="lstDurumGecmisi" Background="Transparent" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#1A1A2E" CornerRadius="10" Padding="14,10" Margin="0,0,0,6">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding DegisimTarihi, StringFormat=dd.MM.yyyy HH:mm}"
+                                                   Foreground="#94A3B8" FontSize="12" Width="130"/>
+                                        <TextBlock Text="{Binding EskiDurum}" Foreground="#EF4444" FontSize="13" FontWeight="SemiBold"/>
+                                        <TextBlock Text=" → " Foreground="#94A3B8" FontSize="13"/>
+                                        <TextBlock Text="{Binding YeniDurum}" Foreground="#22C55E" FontSize="13" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
