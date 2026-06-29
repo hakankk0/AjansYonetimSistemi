@@ -27,10 +27,9 @@ I focused heavily on performance optimization (implementing debounce techniques 
 
 * **Language:** C#
 * **Framework:** .NET 8, WPF
-* **Database:** SQLite
+* **Database & Cloud:** SQLite (Local Data) & Firebase (Cloud Backup, Authentication)
 * **Analytics/Charts:** LiveCharts
 * **PDF & Excel:** QuestPDF, ClosedXML
-* **Cloud & Auth:** Firebase (Realtime Database, Authentication)
 
 ## 👨‍💻 Author
 
