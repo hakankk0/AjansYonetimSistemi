@@ -12,7 +12,7 @@ A comprehensive desktop application designed from scratch for creative and digit
 
 This is a **Personal Project** built as a Windows Desktop Application. It aims to solve the operational tracking problems of digital agencies by providing a centralized system for clients, projects, employees, and finance management.
 
-I focused heavily on performance optimization (implementing debounce techniques for search) and debugging potential system bottlenecks.
+I focused heavily on performance optimization (implementing debounce techniques for search) and debugging potential system bottlenecks. Additionally, the application integrates **Firebase** for secure cloud backups and authentication, while utilizing **SQLite** for efficient local data storage.
 
 ## ✨ Key Features
 
